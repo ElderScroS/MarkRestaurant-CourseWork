@@ -1,0 +1,78 @@
+﻿@model List<User>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/css/admin/admin-users.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <title>Users</title>
+</head>
+<body>
+    <div class="navbar">
+        <div class="nav-item">
+            <form asp-controller="Navigation" asp-action="AdminDashboard" method="post">
+                <button type="submit">
+                    <i class="fas fa-tachometer-alt"></i>Dashboard
+                </button>
+            </form>
+        </div>
+        <div class="nav-item">
+            <form asp-controller="Navigation" asp-action="AdminUsers" method="post">
+                <button type="submit">
+                    <span class="active"><i class="fas fa-users"></i>Users</span>
+                </button>
+            </form>
+        </div>
+        <div class="nav-item">
+            <form asp-controller="Navigation" asp-action="AdminMenu" method="post">
+                <button type="submit">
+                    <i class="fas fa-boxes"></i>Menu
+                </button>
+            </form>
+        </div>
+    </div>
+    <a asp-controller="Home" asp-action="Index" class="exit-button">Exit</a>
+
+    <div class="admin-users-container">
+        <h1 class="admin-users-title">User Management</h1>
+        <table class="admin-users-table">
+            <thead>
+                <tr>
+                    <th>Full Name</th>
+                    <th>Age</th>
+                    <th>Email</th>
+                    <th>Email Confirmed</th>
+                    <th>Phone Number</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in Model)
+                {
+                    <tr>
+                        <td>@user.Name @user.Surname @user.MiddleName</td>
+                        <td>@user.Age</td>
+                        <td>@user.Email</td>
+                        <td>@(user.EmailConfirmed ? "Yes" : "No")</td>
+                        <td>@user.PhoneNumber</td>
+                        <td>
+                            <form asp-controller="Navigation" asp-action="AdminEditUser" style="display:inline;">
+                                <input type="hidden" name="email" value="@user.Email" />
+                                <button type="submit" class="edit-button">
+                                    <i style="color: black" class="fas fa-pencil-alt"></i>
+                                </button>
+                            </form>
+                            <form asp-controller="Admin" asp-action="DeleteUser" method="post" style="display:inline;">
+                                <input type="hidden" name="email" value="@user.Email" />
+                                <button type="submit" style="color: black" class="delete-button">X</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

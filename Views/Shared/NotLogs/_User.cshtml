@@ -1,0 +1,68 @@
+﻿@model User
+
+<a href="#" class="user_link">
+    <i class="fa fa-user" aria-hidden="true" id="openModal"></i>
+</a>
+
+<div class="modal" id="modalLog">
+    <span class="close" id="closeModalLog">&times;</span>
+    <div class="textLogin">Sign in</div>
+    <form asp-controller="Auth" asp-action="Login" class="log">
+        <div class="emailPass">
+            <input asp-for="Email" type="text" placeholder="Email" required>
+        </div>
+        <div class="emailPass">
+            <input asp-for="PasswordHash" type="password" placeholder="Password" required>
+        </div>
+        <div class="btnLogin">
+            <button type="submit">Login</button>
+        </div>
+        <div class="signup-link">
+            <a id="signupbtn">Sign up now</a>
+        </div>
+        <div class="forgot-pass">
+            <a id="forgotPasswordLink">Forgot Password?</a>
+        </div>
+    </form>
+</div>
+
+<div class="modal" id="modalReg">
+    <span class="close" id="closeModalReg">&times;</span>
+    <div class="textLogin">Sign up</div>
+    <form asp-controller="Auth" asp-action="Register" class="signup">
+        <div class="emailPass">
+            <input asp-for="Email" type="email" placeholder="Email" required>
+        </div>
+        <div class="emailPass">
+            <input asp-for="PasswordHash" id="PasswordHash" type="password" placeholder="Password" required>
+            <div class="password-hint" style="font-size: 14px; color: #a62d24; margin-top: 5px;">
+                At least 7 letters, 1 character, and 1 digit
+            </div>
+        </div>
+        <div class="btnSignup">
+            <button type="submit">Sign up</button>
+        </div>
+        <div class="signin-link">
+            <a id="signinbtn">Sign in</a>
+        </div>
+        <div class="forgot-pass">
+            <a id="forgotPasswordLinkReg">Forgot Password?</a>
+        </div>
+    </form>
+</div>
+
+<div class="modal" id="modalForgotPassword">
+    <span class="close" id="closeModalForgot">&times;</span>
+    <div class="textLogin">Forgot Password</div>
+    <form asp-controller="Auth" asp-action="ForgotPassword" class="forgot-password">
+        <div class="emailPass">
+            <input asp-for="Email" type="email" placeholder="Enter your email" required>
+        </div>
+        <div class="btnForgotPassword">
+            <button type="submit">Send to recovery</button>
+        </div>
+        <div class="signup-link">
+            <a id="signupbtnForgot">Sign up now</a>
+        </div>
+    </form>
+</div>

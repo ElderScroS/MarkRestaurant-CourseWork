@@ -1,0 +1,171 @@
+﻿@model User;
+@using MarkRestaurant.Data.Repository;
+@using Microsoft.AspNetCore.Mvc.Rendering;
+@inject OrderRepository basketRepository
+
+@{
+    var orders = basketRepository.GetProductsByUser(Model.Id).Result.ToList();
+    double totalPrice = basketRepository.GetTotalPriceByUser(Model.Id).Result;
+}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        @Html.Partial("~/Views/Shared/Sections/_Head.cshtml")
+        <link href="~/css/user/basket.css" rel="stylesheet" />
+    </head>
+    <body class="sub_page">
+        <div class="hero_area">
+            <div class="bg-box">
+                <img src="~/images/hero-bg.jpg" alt="">
+            </div>
+            <header class="header_section">
+                <div class="container">
+                    <nav class="navbar navbar-expand-lg custom_nav-container">
+                        <form asp-controller="Navigation" asp-action="LIndex" method="post" class="navbar-brand-form">
+                            <input type="hidden" name="email" value="@Model.UserName" />
+                            <button type="submit" class="navbar-brand-btn">
+                                <span style="font-family: 'Dancing Script', cursive; font-size: 35px;">
+                                    MarkRestaurant
+                                </span>
+                            </button>
+                        </form>
+
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class=""></span>
+                        </button>
+
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav mx-auto">
+                                <li class="nav-item">
+                                    <form asp-controller="Navigation" asp-action="LIndex" method="post" class="nav-form">
+                                        <input type="hidden" name="email" value="@Model.UserName" />
+                                        <button type="submit" class="nav-link btn btn-link">Home</button>
+                                    </form>
+                                </li>
+                                <li class="nav-item">
+                                    <form asp-controller="Navigation" asp-action="LMenu" method="post" class="nav-form">
+                                        <input type="hidden" name="email" value="@Model.UserName" />
+                                        <button type="submit" class="nav-link btn btn-link">Menu</button>
+                                    </form>
+                                </li>
+                                <li class="nav-item">
+                                    <form asp-controller="Navigation" asp-action="LAbout" method="post" class="nav-form">
+                                        <input type="hidden" name="email" value="@Model.UserName" />
+                                        <button type="submit" class="nav-link btn btn-link">About</button>
+                                    </form>
+                                </li>
+                                <li class="nav-item">
+                                    <form asp-controller="Navigation" asp-action="LBookTable" method="post" class="nav-form">
+                                        <input type="hidden" name="email" value="@Model.UserName" />
+                                        <button type="submit" class="nav-link btn btn-link">Book Table</button>
+                                    </form>
+                                </li>
+                            </ul>
+                            <div class="user_option">
+                                <form method="post" asp-controller="Navigation" asp-action="EnterIn" class="d-inline">
+                                    <input type="hidden" name="email" value="@Model.UserName" />
+                                    <button type="submit" class="user_l">
+                                        @Model.Name
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </header>
+        </div>
+
+        <section class="food_section layout_padding">
+            <div class="container">
+                <div class="heading_container heading_center">
+                    <h2>Basket</h2>
+                    <form method="post" asp-controller="User" asp-action="ClearProductsInBasket">
+                        <input type="hidden" name="email" value="@Model.UserName" />
+                        <button type="submit" class="clear-button">Clear</button>
+                    </form>
+                </div>
+
+                @if (orders.Count == 0)
+                {
+                    <div class="empty-basket-message">
+                        <p>There are no products in your basket. You can add products in the Menu List.</p>
+                    </div>
+                }
+                else
+                {
+                    <div class="basket-container">
+                        @foreach (var order in orders)
+                        {
+                            <div class="product-card">
+                                <img src="@order.Product.ImageUrl" alt="@order.Product.Title" class="product-image">
+                                <div class="product-info">
+                                    <h3>@order.Product.Title</h3>
+                                    <p>₼@order.Product.Price</p>
+                                    <p>Quantity: @order.Quantity</p>
+                                </div>
+                                <form method="post" asp-controller="User" asp-action="RemoveProductFromBasket">
+                                    <input type="hidden" name="email" value="@Model.UserName" />
+                                    <input type="hidden" name="productId" value="@order.ProductId" />
+                                    <button type="submit" class="remove-button">X</button>
+                                </form>
+                            </div>
+                        }
+                    </div>
+
+                    <div class="total-price">
+                        @if (orders.Count >= 4)
+                        {
+                            <p>Total Price: ₼@totalPrice <span class="discount">(-30%)</span></p>
+                        }
+                        else
+                        {
+                            <p>Total Price: ₼@totalPrice</p>
+                        }
+                    </div>
+
+                    <div class="finish-order-container">
+                        <button class="finish-order-button" onclick="showReceiptModal()">Finish Order</button>
+                    </div>
+
+                    <div style="display: none;" id="receiptModal" class="receipt-modal">
+                        <div class="receipt-modal-content">
+                            <h2>Check your email for receipt</h2>
+                        </div>
+                    </div>
+
+                    <div id="basketModal" class="basket-modal">
+                        <div class="basket-modal-content">
+                            <span class="basket-close" onclick="closeBasketModal()">&times;</span>
+                            <h2>Rate Your Experience</h2>
+                            <form id="ratingForm" method="post" asp-controller="User" asp-action="FinishOrder">
+                                <div class="stars">
+                                    <input type="radio" name="rating" id="star5" value="5">
+                                    <label for="star5">&#9733;</label>
+                                    <input type="radio" name="rating" id="star4" value="4">
+                                    <label for="star4">&#9733;</label>
+                                    <input type="radio" name="rating" id="star3" value="3">
+                                    <label for="star3">&#9733;</label>
+                                    <input type="radio" name="rating" id="star2" value="2">
+                                    <label for="star2">&#9733;</label>
+                                    <input type="radio" name="rating" id="star1" value="1">
+                                    <label for="star1">&#9733;</label>
+                                </div>
+                                <input type="hidden" name="email" value="@Model.UserName" />
+                                <input type="hidden" name="totalPrice" value="@totalPrice" />
+                                <button type="submit">Submit Rating</button>
+                            </form>
+                            <button class="basket-close" onclick="closeBasketModal()">&times;</button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </section>
+
+        <footer class="footer_section">
+            @Html.Partial("~/Views/Shared/Sections/_Footer.cshtml")
+        </footer>
+
+        @Html.Partial("~/Views/Shared/Sections/_Scripts.cshtml")
+    </body>
+</html>

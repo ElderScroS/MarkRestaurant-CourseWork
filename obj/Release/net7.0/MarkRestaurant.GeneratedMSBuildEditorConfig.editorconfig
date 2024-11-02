@@ -1,0 +1,149 @@
+is_global = true
+build_property.TargetFramework = net7.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = MarkRestaurant
+build_property.RootNamespace = MarkRestaurant
+build_property.ProjectDir = C:\Users\markn\OneDrive\Документы\Projects\MarkRestaurant-main\
+build_property.RazorLangVersion = 7.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = true
+build_property.MSBuildProjectDirectory = C:\Users\markn\OneDrive\Документы\Projects\MarkRestaurant-main
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/markn/OneDrive/Документы/Projects/MarkRestaurant-main/Views/Account/Basket.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxCYXNrZXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/markn/OneDrive/Документы/Projects/MarkRestaurant-main/Views/Account/User.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxVc2VyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/markn/OneDrive/Документы/Projects/MarkRestaurant-main/Views/Account/UserEdit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxVc2VyRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/markn/OneDrive/Документы/Projects/MarkRestaurant-main/Views/Auth/ConfirmEmailSucces.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aFxDb25maXJtRW1haWxTdWNjZXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/markn/OneDrive/Документы/Projects/MarkRestaurant-main/Views/Auth/EmailConfirm.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aFxFbWFpbENvbmZpcm0uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/markn/OneDrive/Документы/Projects/MarkRestaurant-main/Views/Auth/ForgotPassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aFxGb3Jnb3RQYXNzd29yZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/markn/OneDrive/Документы/Projects/MarkRestaurant-main/Views/Auth/ResetPasswordSucces.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aFxSZXNldFBhc3N3b3JkU3VjY2VzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/markn/OneDrive/Документы/Projects/MarkRestaurant-main/Views/Auth/ResetPasswordView.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aFxSZXNldFBhc3N3b3JkVmlldy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/markn/OneDrive/Документы/Projects/MarkRestaurant-main/Views/Home/About.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxBYm91dC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/markn/OneDrive/Документы/Projects/MarkRestaurant-main/Views/Home/BookTable.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxCb29rVGFibGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/markn/OneDrive/Документы/Projects/MarkRestaurant-main/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/markn/OneDrive/Документы/Projects/MarkRestaurant-main/Views/Home/Menu.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxNZW51LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/markn/OneDrive/Документы/Projects/MarkRestaurant-main/Views/Logged/LoggedAbout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9nZ2VkXExvZ2dlZEFib3V0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/markn/OneDrive/Документы/Projects/MarkRestaurant-main/Views/Logged/LoggedBookTable.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9nZ2VkXExvZ2dlZEJvb2tUYWJsZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/markn/OneDrive/Документы/Projects/MarkRestaurant-main/Views/Logged/LoggedIndex.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9nZ2VkXExvZ2dlZEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/markn/OneDrive/Документы/Projects/MarkRestaurant-main/Views/Logged/LoggedMenu.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9nZ2VkXExvZ2dlZE1lbnUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/markn/OneDrive/Документы/Projects/MarkRestaurant-main/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/markn/OneDrive/Документы/Projects/MarkRestaurant-main/Views/Shared/Logs/_LogMenu.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXExvZ3NcX0xvZ01lbnUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/markn/OneDrive/Документы/Projects/MarkRestaurant-main/Views/Shared/Logs/_LUser.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXExvZ3NcX0xVc2VyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/markn/OneDrive/Документы/Projects/MarkRestaurant-main/Views/Shared/NotLogs/_About.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXE5vdExvZ3NcX0Fib3V0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/markn/OneDrive/Документы/Projects/MarkRestaurant-main/Views/Shared/NotLogs/_Book.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXE5vdExvZ3NcX0Jvb2suY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/markn/OneDrive/Документы/Projects/MarkRestaurant-main/Views/Shared/NotLogs/_Menu.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXE5vdExvZ3NcX01lbnUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/markn/OneDrive/Документы/Projects/MarkRestaurant-main/Views/Shared/NotLogs/_User.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXE5vdExvZ3NcX1VzZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/markn/OneDrive/Документы/Projects/MarkRestaurant-main/Views/Shared/Sections/_Footer.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXFNlY3Rpb25zXF9Gb290ZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/markn/OneDrive/Документы/Projects/MarkRestaurant-main/Views/Shared/Sections/_Head.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXFNlY3Rpb25zXF9IZWFkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/markn/OneDrive/Документы/Projects/MarkRestaurant-main/Views/Shared/Sections/_Header.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXFNlY3Rpb25zXF9IZWFkZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/markn/OneDrive/Документы/Projects/MarkRestaurant-main/Views/Shared/Sections/_Offer.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXFNlY3Rpb25zXF9PZmZlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/markn/OneDrive/Документы/Projects/MarkRestaurant-main/Views/Shared/Sections/_Scripts.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXFNlY3Rpb25zXF9TY3JpcHRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/markn/OneDrive/Документы/Projects/MarkRestaurant-main/Views/Shared/Sections/_Slider.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXFNlY3Rpb25zXF9TbGlkZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/markn/OneDrive/Документы/Projects/MarkRestaurant-main/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/markn/OneDrive/Документы/Projects/MarkRestaurant-main/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/markn/OneDrive/Документы/Projects/MarkRestaurant-main/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/markn/OneDrive/Документы/Projects/MarkRestaurant-main/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-da1f9bu4p9

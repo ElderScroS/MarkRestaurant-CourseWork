@@ -1,0 +1,173 @@
+﻿@using MarkRestaurant.Data;
+@using MarkRestaurant.Data.Repository;
+@using Newtonsoft;
+@inject DashboardRepository dashboardRepository
+
+@{
+    ViewData["Title"] = "Dashboard";
+    var totalUsers = dashboardRepository.GetTotalUsersCountAsync().Result;
+    var totalOrders = dashboardRepository.GetTotalOrdersCountAsync().Result;
+    var activeOrders = dashboardRepository.GetActiveOrdersCountAsync().Result;
+    var todayFinishedOrders = dashboardRepository.GetTodayFinishedOrdersCountAsync().Result;
+    var totalRevenue = dashboardRepository.GetTotalRevenueAsync().Result;
+    var topUsers = dashboardRepository.GetTopUsersAsync().Result;
+    var dailySalesData = dashboardRepository.GetWeeklySalesAsync().Result;
+    var dailyUserRegistrations = dashboardRepository.GetWeeklyUserRegistrationsAsync().Result;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/css/admin/admin-dashboard.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Dashboard</title>
+</head>
+<body>
+    <div class="navbar">
+        <div class="nav-item">
+            <form asp-controller="Navigation" asp-action="AdminDashboard" method="post">
+                <button type="submit">
+                    <span class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</span>
+                </button>
+            </form>
+        </div>
+        <div class="nav-item">
+            <form asp-controller="Navigation" asp-action="AdminUsers" method="post">
+                <button type="submit">
+                    <i class="fas fa-users"></i> Users
+                </button>
+            </form>
+        </div>
+        <div class="nav-item">
+            <form asp-controller="Navigation" asp-action="AdminMenu" method="post">
+                <button type="submit">
+                    <i class="fas fa-boxes"></i> Menu
+                </button>
+            </form>
+        </div>
+    </div>
+    <a asp-controller="Home" asp-action="Index" class="exit-button">Exit</a>
+
+    <div class="dashboard-container">
+        <div class="dashboard-cards">
+            <div class="card">
+                <div class="card-content">
+                    <h3>Total Users</h3>
+                    <hr />
+                    <p>@totalUsers</p>
+                </div>
+            </div>
+            <form asp-controller="Navigation" asp-action="AdminFinishedOrders" method="post" class="card">
+                <button type="submit" class="card-content" style="background: none; border: none; width: 100%; padding: 0;">
+                    <div>
+                        <h3>Finished Orders</h3>
+                        <hr style="color: wheat" />
+                        <p style="color: wheat">@totalOrders</p>
+                    </div>
+                </button>
+            </form>
+            <div class="card">
+                <div class="card-content">
+                    <h3>Revenue</h3>
+                    <hr />
+                    <p>₼@totalRevenue</p>
+                </div>
+            </div>
+            <form asp-controller="Navigation" asp-action="AdminTodayFinishedOrders" method="post" class="card">
+                <button type="submit" class="card-content" style="background: none; border: none; width: 100%; padding: 0;">
+                    <div>
+                        <h3>Today Finished Orders</h3>
+                        <hr style="color: wheat" />
+                        <p style="color: wheat">@todayFinishedOrders</p>
+                    </div>
+                </button>
+            </form>
+            <div class="card">
+                <div class="card-content">
+                    <h2>Top 3 Users</h2>
+                    <hr />
+                    <ul>
+                        @foreach (var user in topUsers)
+                        {
+                            <li>@user.Name @user.Surname @user.MiddleName</li>
+                        }
+                    </ul>
+                </div>
+            </div>
+            <form asp-controller="Navigation" asp-action="AdminActiveOrders" method="post" class="card">
+                <button type="submit" class="card-content" style="background: none; border: none; width: 100%; padding: 0;">
+                    <div>
+                        <h3>Active Orders</h3>
+                        <hr style="color: wheat" />
+                        <p style="color: wheat">@activeOrders</p>
+                    </div>
+                </button>
+            </form>
+        </div>
+
+        <div class="charts-container">
+            <div class="chart-container">
+                <h2>Daily Sales</h2>
+                <canvas id="salesChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <h2>Daily Registrations</h2>
+                <canvas id="registrationsChart"></canvas>
+            </div>
+        </div>
+        <p style="text-align: center; color: #b3a4a4; font-size: 14px; margin-top: 30px;">While there is little data, the graphs are not drawn.</p>
+    </div>
+
+    <script>
+        const salesData = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(dailySalesData));
+        const registrationsData = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(dailyUserRegistrations));
+
+        const salesCtx = document.getElementById('salesChart').getContext('2d');
+        const salesChart = new Chart(salesCtx, {
+            type: 'bar',
+            data: {
+                labels: salesData.map(data => data.Day),
+                datasets: [{
+                    label: 'Total Sales',
+                    data: salesData.map(data => data.TotalSales),
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        const registrationsCtx = document.getElementById('registrationsChart').getContext('2d');
+        const registrationsChart = new Chart(registrationsCtx, {
+            type: 'line',
+            data: {
+                labels: registrationsData.map(data => data.Day),
+                datasets: [{
+                    label: 'User Registrations',
+                    data: registrationsData.map(data => data.RegistrationCount),
+                    fill: false,
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    tension: 0.1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

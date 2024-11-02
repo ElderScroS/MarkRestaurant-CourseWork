@@ -1,0 +1,107 @@
+﻿@using MarkRestaurant.Data;
+@using MarkRestaurant.Data.Repository;
+@using MarkRestaurant.Models;
+@using Microsoft.EntityFrameworkCore;
+@inject ProductRepository productRepository
+
+@{
+    ViewData["Title"] = "AdminMenu";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/css/admin/admin-menu.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <title>Admin Menu</title>
+</head>
+<body>
+    <div class="navbar">
+        <div class="nav-item">
+            <form asp-controller="Navigation" asp-action="AdminDashboard" method="post">
+                <button type="submit">
+                    <i class="fas fa-tachometer-alt"></i>Dashboard
+                </button>
+            </form>
+        </div>
+        <div class="nav-item">
+            <form asp-controller="Navigation" asp-action="AdminUsers" method="post">
+                <button type="submit">
+                    <i class="fas fa-users"></i>Users
+                </button>
+            </form>
+        </div>
+        <div class="nav-item">
+            <form asp-controller="Navigation" asp-action="AdminMenu" method="post">
+                <button type="submit">
+                    <span class="active"><i class="fas fa-boxes"></i>Menu</span>
+                </button>
+            </form>
+        </div>
+    </div>
+    <a asp-controller="Home" asp-action="Index" class="exit-button">Exit</a>
+
+    <div class="menu-container">
+        <h1 class="admin-menu-title">Menu Management</h1>
+
+        <div class="filter-container">
+            <ul class="filter-list">
+                <li class="flist-item active" data-category="All">All</li>
+                <li class="flist-item" data-category="Burgers">Burgers</li>
+                <li class="flist-item" data-category="Potato">Potato</li>
+                <li class="flist-item" data-category="Snacks">Snacks</li>
+                <li class="flist-item" data-category="Drinks">Drinks</li>
+                <form asp-controller="Navigation" asp-action="AdminAddProduct" method="post">
+                    <button type="submit" class="add-product-button">Add Product</button>
+                </form>
+            </ul>
+        </div>
+
+        <div class="menu">
+            @foreach (var product in productRepository.GetAllProducts().Result)
+            {
+                <div class="product @product.Category">
+                    <img src="@product.ImageUrl" alt="@product.Title">
+                    <div class="product-info">
+                        <h3>@product.Title</h3>
+                        <p>₼@product.Price</p>
+                        <form method="post" asp-controller="Admin" asp-action="RemoveProductFromMenu">
+                            <input type="hidden" name="productId" value="@product.Id" />
+                            <button type="submit" class="delete-button">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const filterItems = document.querySelectorAll('.flist-item');
+            const products = document.querySelectorAll('.product');
+
+            filterItems.forEach(item => {
+                item.addEventListener('click', function () {
+                    filterItems.forEach(i => i.classList.remove('active'));
+                    this.classList.add('active');
+                    const category = this.getAttribute('data-category');
+                    products.forEach(product => {
+                        const productCategory = product.classList.contains(category) || category === 'All';
+                        if (productCategory) {
+                            product.classList.add('show');
+                        } else {
+                            product.classList.remove('show');
+                        }
+                    });
+                });
+            });
+
+            setTimeout(() => {
+                products.forEach(product => product.classList.add('show'));
+            }, 100);
+        });
+    </script>
+</body>
+</html>

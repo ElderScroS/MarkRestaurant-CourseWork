@@ -1,0 +1,175 @@
+﻿@{
+    ViewData["Title"] = "UserEdit";
+}
+@model User
+@using MarkRestaurant.Helpers
+
+<!DOCTYPE html>
+<html>
+<head>
+    @Html.Partial("~/Views/Shared/Sections/_Head.cshtml")
+    <link href="~/css/user/user-edit.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+</head>
+<style>
+    .disabled-nav {
+        pointer-events: none;
+        opacity: 0.5;
+    }
+
+    .image-upload {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: 30%;
+    }
+
+    .image-preview {
+        width: 250px;
+        height: 250px;
+        border-radius: 50%;
+        object-fit: cover;
+        transition: filter 0.3s ease;
+    }
+
+    .upload-icon {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: none;
+        color: white;
+    }
+
+    .image-upload:hover .upload-icon {
+        display: block;
+    }
+
+    .image-upload:hover .image-preview {
+        filter: brightness(70%);
+    }
+</style>
+<body class="sub_page">
+    <div style="margin-bottom: 18px;" class="hero_area">
+        <div class="bg-box">
+            <img src="~/images/hero-bg.jpg" alt="">
+        </div>
+        <header class="header_section">
+            @Html.Partial("~/Views/Shared/Sections/_Header.cshtml")
+        </header>
+    </div>
+    <div class="container">
+        <div class="main-body">
+            <div class="row gutters-sm justify-content-center">
+                <div class="col-md-10">
+                    <div class="card mb-3 bg-secondary text-white border-0">
+                        <div class="card-body bg-dark p-4">
+                            <form asp-controller="User" asp-action="Save" method="post" enctype="multipart/form-data">
+                                <div class="form-group d-flex align-items-center mb-3">
+                                    <div class="col-sm-9 text-secondary" style="flex: 1; display: flex; justify-content: center;">
+                                        <div class="image-upload" onclick="document.getElementById('profileImage').click()">
+                                            <img id="imagePreview" src="@Model.ProfileImagePath" class="image-preview" alt="Profile Picture Preview" />
+                                            <i class="fas fa-camera upload-icon"></i>
+                                            <input type="file" accept="image/*" name="profileImage" id="profileImage" class="form-control" onchange="previewImage(event)" style="display: none;" />
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <hr class="border-dark" />
+                                <div class="form-group d-flex align-items-center mb-3">
+                                    <label class="col-sm-3" style="flex: 0 0 30%; margin: 0;">Name</label>
+                                    <div class="col-sm-9 text-secondary" style="flex: 1;">
+                                        <input type="text" asp-for="Name" class="form-control" placeholder="Enter name" value="@Model.Name">
+                                    </div>
+                                </div>
+                                <hr class="border-dark" />
+                                <div class="form-group d-flex align-items-center mb-3">
+                                    <label class="col-sm-3" style="flex: 0 0 30%; margin: 0;">Surname</label>
+                                    <div class="col-sm-9 text-secondary" style="flex: 1;">
+                                        <input type="text" asp-for="Surname" class="form-control" placeholder="Enter surname" value="@Model.Surname">
+                                    </div>
+                                </div>
+                                <hr class="border-dark" />
+                                <div class="form-group d-flex align-items-center mb-3">
+                                    <label class="col-sm-3" style="flex: 0 0 30%; margin: 0;">Middle Name</label>
+                                    <div class="col-sm-9 text-secondary" style="flex: 1;">
+                                        <input type="text" asp-for="MiddleName" class="form-control" placeholder="Enter middle name" value="@Model.MiddleName">
+                                    </div>
+                                </div>
+                                <hr class="border-dark" />
+                                <div class="form-group d-flex align-items-center mb-3">
+                                    <label class="col-sm-3" style="flex: 0 0 30%; margin: 0;">Age</label>
+                                    <div class="col-sm-9 text-secondary" style="flex: 1;">
+                                        <input type="number" asp-for="Age" class="form-control" placeholder="Enter age" value="@Model.Age">
+                                    </div>
+                                </div>
+                                <hr class="border-dark" />
+                                <div class="form-group d-flex align-items-center mb-3">
+                                    <label class="col-sm-3" style="flex: 0 0 30%; margin: 0;">Phone Number</label>
+                                    <div class="col-sm-9 text-secondary" style="flex: 1;">
+                                        <input type="tel" asp-for="PhoneNumber" class="form-control" placeholder="Enter phone number" value="@Model.PhoneNumber">
+                                    </div>
+                                </div>
+                                <hr class="border-dark" />
+                                <input type="hidden" name="email" value="@Model.UserName" />
+                                <button class="btn btn-info" type="submit" disabled id="save-button" style="border-radius: 50px;">Save</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer_section">
+        @Html.Partial("~/Views/Shared/Sections/_Footer.cshtml")
+    </footer>
+
+    @Html.Partial("~/Views/Shared/Sections/_Scripts.cshtml")
+    <script>
+        function checkForm() {
+            const inputs = document.querySelectorAll('.form-control');
+            let allFilled = true;
+
+            inputs.forEach(input => {
+                if (input.type !== 'file' && input.value.trim() === '') {
+                    allFilled = false;
+                }
+            });
+
+            document.querySelector('.btn-info').disabled = !allFilled;
+        }
+
+        function previewImage(event) {
+            const imagePreview = document.getElementById('imagePreview');
+            imagePreview.src = URL.createObjectURL(event.target.files[0]);
+            imagePreview.onload = function () {
+                URL.revokeObjectURL(imagePreview.src);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', (event) => {
+            checkForm();
+            const inputs = document.querySelectorAll('.form-control');
+
+            inputs.forEach(input => {
+                input.addEventListener('input', checkForm);
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', (event) => {
+            document.getElementById("save-button").addEventListener("click", function (event) {
+                event.preventDefault();
+
+                const disabledButtons = document.querySelectorAll('.disabled-nav');
+                disabledButtons.forEach(button => {
+                    button.classList.remove('disabled-nav');
+                    button.style.pointerEvents = 'auto';
+                    button.style.opacity = '1';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

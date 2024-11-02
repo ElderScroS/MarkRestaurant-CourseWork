@@ -1,0 +1,166 @@
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    box-sizing: border-box;
+    font-family: arial;
+}
+
+body {
+    height: 100vh;
+    width: 100%;
+}
+
+.navbar-brand-form {
+    display: inline;
+}
+
+.navbar-brand-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    color: #ffffff;
+    text-decoration: none;
+    transition: 0.5s;
+}
+
+    .navbar-brand-btn:hover {
+        color: #FFBE33;
+    }
+
+.footer-logo:hover {
+    color: #FFBE33;
+}
+
+.products {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.product {
+    position: relative;
+    background-color: #1e1c21;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+    .product:hover {
+        transform: translateY(-5px);
+    }
+
+    .product img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-bottom: 1px solid #666;
+    }
+
+.product-info {
+    color: whitesmoke;
+    padding: 10px 15px;
+}
+
+    .product-info h3 {
+        margin: 0px 0px;
+        font-size: 18px;
+    }
+
+    .product-info p {
+        margin: 5px 0px;
+        font-size: 14px;
+        color: floralwhite;
+    }
+
+.cart-button {
+    position: absolute;
+    bottom: 0px;
+    right: 7px;
+    background-color: #FFBE33;
+    border-radius: 50%;
+    color: black;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    margin: 5px 0px;
+    transition: background-color 0.3s ease;
+}
+
+    .cart-button:hover {
+        background-color: #ddac22;
+    }
+
+.filter-container {
+    text-align: center;
+    margin: 20px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.filter-list {
+    display: flex;
+    text-decoration: none;
+    list-style: none;
+    gap: 5px;
+}
+
+.flist-item {
+    width: 100px;
+    border-radius: 20px;
+    color: whitesmoke;
+    padding: 7px;
+    background-color: transparent;
+    font-size: 16px;
+    transition: 0.3s ease;
+    cursor: pointer;
+}
+
+.flist-item:hover {
+    background-color: #1e1c2180;
+}
+
+.flist-item.active {
+    background-color: #1e1c21;
+}
+
+.user_button {
+    display: inline-block;
+    background-color: transparent;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.user_button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.cart-link button i {
+    display: inline-block;
+    color: #ffbe33;
+    transition: 0.2s ease;
+    margin: 0 15px;
+}
+
+.cart-link button i:hover {
+    color: #c7962c;
+}
+
+.user_l {
+    display: inline-block;
+    padding: 8px 13px;
+    background: transparent;
+    color: white;
+    border: 0.5px solid;
+    border-color: transparent;
+    transition: 0.4s;
+    cursor: pointer;
+}
+
+.user_l:hover {
+    color: rgb(47, 230, 93);
+    border: 0.5px solid rgb(47, 230, 93);
+    border-radius: 20px;
+}

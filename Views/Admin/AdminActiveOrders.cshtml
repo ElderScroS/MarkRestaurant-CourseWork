@@ -1,0 +1,89 @@
+﻿@using MarkRestaurant.Models
+@using MarkRestaurant.Data;
+@using MarkRestaurant.Data.Repository;
+@inject DashboardRepository dashboardRepository;
+
+@{
+    var activeOrders = dashboardRepository.GetActiveOrdersAsync().Result;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/css/admin/admin-active-orders.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Active Orders</title>
+</head>
+<body>
+    <div class="navbar">
+        <div class="nav-item">
+            <form asp-controller="Navigation" asp-action="AdminDashboard" method="post">
+                <button type="submit">
+                    <i class="fas fa-tachometer-alt"></i> Dashboard
+                </button>
+            </form>
+        </div>
+        <div class="nav-item">
+            <form asp-controller="Navigation" asp-action="AdminUsers" method="post">
+                <button type="submit">
+                    <i class="fas fa-users"></i> Users
+                </button>
+            </form>
+        </div>
+        <div class="nav-item">
+            <form asp-controller="Navigation" asp-action="AdminMenu" method="post">
+                <button type="submit">
+                    <i class="fas fa-boxes"></i> Menu
+                </button>
+            </form>
+        </div>
+    </div>
+    <a asp-controller="Home" asp-action="Index" class="exit-button">Exit</a>
+
+    <div class="orders-container">
+        <h1 class="orders-title">Active Orders</h1>
+
+        @if (activeOrders != null && activeOrders.Any())
+        {
+            <table class="orders-table">
+                <thead>
+                    <tr>
+                        <th>Full Name</th>
+                        <th>Email</th>
+                        <th>Title</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var order in activeOrders)
+                    {
+                        <tr>
+                            <td>@order.User.Name @order.User.Surname @order.User.MiddleName</td>
+                            <td>@order.User.Email</td>
+                            <td>@order.Product.Title</td>
+                            <td>@(order.Product.Price * order.Quantity)</td>
+                            <td>@order.Quantity</td>
+                            <td>
+                                <form asp-controller="Admin" asp-action="DeleteActiveOrder" method="post" style="display:inline;">
+                                    <input type="hidden" name="productId" value="@order.ProductId" />
+                                    <input type="hidden" name="email" value="@order.User.Email" />
+                                    <button type="submit" style="color: black" class="delete-button">X</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p style="text-align: center; color: #b3a4a4; font-size: 14px; margin-top: 30px;">There are no active orders yet.</p>
+        }
+    </div>
+</body>
+</html>

@@ -1,0 +1,115 @@
+﻿@model User
+@using MarkRestaurant.Helpers
+
+<!DOCTYPE html>
+<html>
+    <head>
+        @Html.Partial("~/Views/Shared/Sections/_Head.cshtml")
+        <link href="~/css/user/user.css" rel="stylesheet" />
+    </head>
+    <body class="sub_page">
+        <div class="hero_area" style="margin-bottom: 30px;">
+            <div class="bg-box">
+                <img src="~/images/hero-bg.jpg" alt="">
+            </div>
+            <header class="header_section">
+                @Html.Partial("~/Views/Shared/Sections/_Header.cshtml")
+            </header>
+        </div>
+
+        <div class="container">
+            <div class="main-body">
+                <div class="row gutters-sm">
+                    <div class="col-md-4 mb-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex flex-column align-items-center text-center">
+                                    <img id="profileImage" src="@Model.ProfileImagePath" class="rounded-circle" width="150">
+                                    <div class="mt-3">
+                                        <h4>@Html.GetFullName(Model)</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Name</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        @Model.Name
+                                    </div>
+                                </div>
+                                <hr />
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Surname</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        @Model.Surname
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Middle Name</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        @Model.MiddleName
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Age</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        @Model.Age
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Email</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        @Model.Email
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Phone Number</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        @Model.PhoneNumber
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <form asp-controller="Navigation" asp-action="Edit" method="post" class="d-inline">
+                                            <input type="hidden" name="email" value="@Model.UserName" />
+                                            <button type="submit" class="btn btn-info">
+                                                Edit
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer_section">
+            @Html.Partial("~/Views/Shared/Sections/_Footer.cshtml")
+        </footer>
+
+        @Html.Partial("~/Views/Shared/Sections/_Scripts.cshtml")
+    </body>
+</html>

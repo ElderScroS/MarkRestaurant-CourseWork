@@ -1,0 +1,57 @@
+﻿<div class="container">
+    <nav class="navbar navbar-expand-lg custom_nav-container">
+        <form asp-controller="Navigation" asp-action="LIndex" method="post" class="navbar-brand-form">
+            <input type="hidden" name="email" value="@Model.UserName" />
+            <button type="submit" class="navbar-brand-btn disabled-nav" id="save-button">
+                <span style="font-family: 'Dancing Script', cursive; font-size: 35px;">
+                    MarkRestaurant
+                </span>
+            </button>
+        </form>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class=""></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item">
+                    <form asp-controller="Navigation" asp-action="LIndex" method="post" class="nav-form">
+                        <input type="hidden" name="email" value="@Model.UserName" />
+                        <button type="submit" class="nav-link btn btn-link disabled-nav">Home</button>
+                    </form>
+                </li>
+                <li class="nav-item">
+                    <form asp-controller="Navigation" asp-action="LMenu" method="post" class="nav-form">
+                        <input type="hidden" name="email" value="@Model.UserName" />
+                        <button type="submit" class="nav-link btn btn-link disabled-nav">Menu</button>
+                    </form>
+                </li>
+                <li class="nav-item">
+                    <form asp-controller="Navigation" asp-action="LAbout" method="post" class="nav-form">
+                        <input type="hidden" name="email" value="@Model.UserName" />
+                        <button type="submit" class="nav-link btn btn-link disabled-nav">About</button>
+                    </form>
+                </li>
+                <li class="nav-item">
+                    <form asp-controller="Navigation" asp-action="LBookTable" method="post" class="nav-form">
+                        <input type="hidden" name="email" value="@Model.UserName" />
+                        <button type="submit" class="nav-link btn btn-link disabled-nav">Book Table</button>
+                    </form>
+                </li>
+            </ul>
+            <div class="user_option">
+                <div id="cart-link" class="cart-link">
+                    <form asp-controller="Navigation" asp-action="Basket" method="post" class="d-inline">
+                        <input type="hidden" name="email" value="@Model.UserName" />
+                        <button type="submit" class="btn btn-link p-0 disabled-nav">
+                            <span><i class="fa fa-shopping-cart"></i></span>
+                        </button>
+                    </form>
+                </div>
+
+                <a asp-controller="Home" asp-action="Index" class="order_online disabled-nav">Exit</a>
+            </div>
+        </div>
+    </nav>
+</div>

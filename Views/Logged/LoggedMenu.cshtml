@@ -1,0 +1,140 @@
+﻿@model User
+@using Microsoft.AspNetCore.Mvc.Rendering
+
+<!DOCTYPE html>
+<html>
+    <head>
+        @Html.Partial("~/Views/Shared/Sections/_Head.cshtml")
+    </head>
+    <body class="sub_page">
+        <div class="hero_area">
+            <div class="bg-box">
+                <img src="~/images/hero-bg.jpg" alt="">
+            </div>
+            <header class="header_section">
+                <div class="container">
+                    <nav class="navbar navbar-expand-lg custom_nav-container ">
+                        <form asp-controller="Navigation" asp-action="LIndex" method="post" class="navbar-brand-form">
+                            <input type="hidden" name="email" value="@Model.UserName" />
+                            <button type="submit" class="navbar-brand-btn">
+                                <span style="font-family: 'Dancing Script', cursive; font-size: 35px;">
+                                    MarkRestaurant
+                                </span>
+                            </button>
+                        </form>
+
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class=""></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav mx-auto">
+                                <li class="nav-item">
+                                <form asp-controller="Navigation" asp-action="LIndex" method="post" class="d-inline">
+                                        <input type="hidden" name="email" value="@Model.UserName" />
+                                        <button type="submit" class="nav-link btn btn-link">Home</button>
+                                    </form>
+                                </li>
+                                <li class="nav-item active">
+                                <form asp-controller="Navigation" asp-action="LMenu" method="post" class="d-inline">
+                                        <input type="hidden" name="email" value="@Model.UserName" />
+                                        <button type="submit" class="nav-link btn btn-link">Menu<span class="sr-only">(current)</span></button>
+                                    </form>
+                                </li>
+                                <li class="nav-item">
+                                <form asp-controller="Navigation" asp-action="LAbout" method="post" class="d-inline">
+                                        <input type="hidden" name="email" value="@Model.UserName" />
+                                        <button type="submit" class="nav-link btn btn-link">About</button>
+                                    </form>
+                                </li>
+                                <li class="nav-item">
+                                <form asp-controller="Navigation" asp-action="LBookTable" method="post" class="d-inline">
+                                        <input type="hidden" name="email" value="@Model.UserName" />
+                                        <button type="submit" class="nav-link btn btn-link">Book Table</button>
+                                    </form>
+                                </li>
+                            </ul>
+                            <div class="user_option">
+                                @Html.Partial("~/Views/Shared/Logs/_LUser.cshtml")
+
+
+                                <a href="#" style="display: none" class="user_link">
+                                    <i class="fa fa-user" aria-hidden="true" id="openModal"></i>
+                                </a>
+                                <div class="modal" id="modalLog">
+                                    <span class="close" id="closeModalLog">&times;</span>
+                                    <div class="textLogin">Sign in</div>
+                                    <form asp-controller="Auth" asp-action="Login" class="log">
+                                        <div class="emailPass">
+                                            <input asp-for="Email" type="email" placeholder="Email" required>
+                                        </div>
+                                        <div class="emailPass">
+                                            <input asp-for="PasswordHash" type="password" placeholder="Password" required>
+                                        </div>
+                                        <div class="btnLogin">
+                                            <button type="submit">Login</button>
+                                        </div>
+                                        <div class="signup-link">
+                                            <a id="signupbtn">Sign up now</a>
+                                        </div>
+                                        <div class="forgot-pass">
+                                            <a id="forgotPasswordLink">Forgot Password?</a>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal" id="modalReg">
+                                    <span class="close" id="closeModalReg">&times;</span>
+                                    <div class="textLogin">Sign up</div>
+                                    <form asp-controller="Auth" asp-action="Register" class="signup">
+                                        <div class="emailPass">
+                                            <input asp-for="Email" type="email" placeholder="Email" required>
+                                        </div>
+                                        <div class="emailPass">
+                                            <input asp-for="PasswordHash" id="PasswordHash" type="password" placeholder="Password" required>
+                                            <div class="password-hint" style="font-size: 14px; color: #a62d24; margin-top: 5px;">
+                                                At least 7 letters, 1 character, and 1 digit
+                                            </div>
+                                        </div>
+                                        <div class="btnSignup">
+                                            <button type="submit">Sign up</button>
+                                        </div>
+                                        <div class="signin-link">
+                                            <a id="signinbtn">Sign in</a>
+                                        </div>
+                                        <div class="forgot-pass">
+                                            <a id="forgotPasswordLinkReg">Forgot Password?</a>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal" id="modalForgotPassword">
+                                    <span class="close" id="closeModalForgot">&times;</span>
+                                    <div class="textLogin">Forgot Password</div>
+                                    <form asp-controller="Auth" asp-action="ForgotPassword" class="forgot-password">
+                                        <div class="emailPass">
+                                            <input asp-for="Email" type="email" placeholder="Enter your email" required>
+                                        </div>
+                                        <div class="btnForgotPassword">
+                                            <button type="submit">Send to recovery</button>
+                                        </div>
+                                        <div class="signup-link">
+                                            <a id="signupbtnForgot">Sign up now</a>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </header>
+        </div>
+
+        <section class="food_section layout_padding">
+            @Html.Partial("~/Views/Shared/Logs/_LogMenu.cshtml")
+        </section>
+
+        <footer class="footer_section">
+            @Html.Partial("~/Views/Shared/Sections/_Footer.cshtml")
+        </footer>
+            
+        @Html.Partial("~/Views/Shared/Sections/_Scripts.cshtml")
+    </body>
+</html>

@@ -1,0 +1,15 @@
+﻿<form method="post" asp-controller="Navigation" asp-action="EnterIn" class="d-inline">
+    <input type="hidden" name="email" value="@Model.UserName" />
+    <button type="submit" class="user_l">
+        @Model.Name
+    </button>
+</form>
+
+<div id="cart-link" class="cart-link">
+    <form method="post" asp-controller="Navigation" asp-action="Basket" class="d-inline">
+        <input type="hidden" name="email" value="@Model.UserName" />
+        <button type="submit" class="btn btn-link p-0">
+            <i class="fa fa-shopping-cart"></i>
+        </button>
+    </form>
+</div>

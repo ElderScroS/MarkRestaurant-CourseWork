@@ -1,0 +1,143 @@
+﻿.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    background-color: rgba(10, 10, 10, 0.95);
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+    text-align: center;
+    width: 420px;
+    max-height: 45%;
+    overflow-y: auto;
+    opacity: 0;
+    animation: modalFadeIn 0.5s forwards;
+}
+
+.modal .close {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
+}
+
+.modal .textLogin {
+    font-size: 36px;
+    font-weight: 600;
+    margin: 0 0 20px 0;
+    color: #ffffcc;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.emailPass {
+    width: 100%;
+    margin: 15px 0;
+}
+
+.emailPass input {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #292929;
+    color: #fff;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.emailPass input:focus {
+    border-color: #00aaff;
+    outline: none;
+    box-shadow: 0 0 10px rgba(0, 170, 255, 0.7);
+}
+
+.emailPass input::placeholder {
+    color: #888;
+}
+
+.btnLogin, .btnSignup, .btnForgotPassword {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.btnLogin button, .btnSignup button, .btnForgotPassword button {
+    width: 100%;
+    padding: 12px 0;
+    background-color: #ffcc00;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #121212;
+    font-weight: bold;
+}
+
+.btnLogin button:hover, .btnSignup button:hover, .btnForgotPassword button:hover {
+    background-color: #ffdb4d;
+}
+
+.signup-link, .signin-link, .forgot-pass {
+    font-size: 15px;
+    cursor: pointer;
+    color: #00aaff;
+    transition: color 0.3s;
+}
+
+.signup-link:hover, .signin-link:hover, .forgot-pass:hover {
+    color: wheat;
+    text-decoration: underline;
+}
+
+#modalLog .signup-link {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+}
+
+#modalLog .forgot-pass {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+}
+
+#modalReg .signin-link {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+}
+
+#modalReg .forgot-pass {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+}
+
+#modalForgotPassword .emailPass {
+    margin: 50px 0;
+}
+
+#modalForgotPassword .signup-link {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+}
+
+#modalForgotPassword .forgot-pass {
+    display: none;
+}
+
+@keyframes modalFadeIn {
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}

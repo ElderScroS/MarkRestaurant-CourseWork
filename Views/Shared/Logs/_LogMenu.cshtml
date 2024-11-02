@@ -1,0 +1,44 @@
+﻿@using MarkRestaurant.Data;
+@using MarkRestaurant.Data.Repository;
+@using MarkRestaurant.Models;
+@using Microsoft.EntityFrameworkCore;
+@inject ProductRepository productRepository
+
+<div class="container">
+        <div class="heading_container heading_center">
+            <h2>
+                Our Menu
+            </h2>
+        </div>
+
+        <div class="filter-container">
+            <ul class="filter-list">
+                <li class="flist-item active" data-category="All">All</li>
+                <li class="flist-item" data-category="Burgers">Burgers</li>
+                <li class="flist-item" data-category="Potato">Potato</li>
+                <li class="flist-item" data-category="Snacks">Snacks</li>
+                <li class="flist-item" data-category="Drinks">Drinks</li>
+            </ul>
+        </div>
+
+        <div class="products">
+            @foreach (var product in productRepository.GetAllProducts().Result)
+            {
+                <div class="product @product.Category">
+                    <img src="@product.ImageUrl" alt="@product.Title">
+                    <div class="product-info">
+                        <h3>@product.Title</h3>
+                        <p>₼@product.Price</p>
+
+                        <form method="post" asp-controller="User" asp-action="AddToBasket" >
+                            <input type="hidden" name="email" value="@Model.UserName"/>
+                            <input type="hidden" name="productId" value="@product.Id"/>
+                            <button type="submit" class="cart-button" style="padding: 8px 13px;">
+                                <i class="fa fa-shopping-cart"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            }
+        </div>
+</div>
